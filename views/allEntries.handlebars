@@ -11,8 +11,8 @@
             {{title}}
          </div>
          <div class="card-body">
-            <p class="card-text">{{content}}</p>
-            <button type="submit" value="submit" class="btn btn-primary">Go to post</button>
+            {{!-- <p class="card-text">{{content}}</p> --}}
+            <button class="submit_entry" type="submit" value="submit" class="btn btn-primary">Go to post</button>
          </div>
          <div class="card-footer text-muted">
             {{author}} Posted on: {{entry_date}}
@@ -37,7 +37,7 @@
          </div>
          <div class="input-group pb-4">
             <textarea class="form-control" id="author_name" aria-label="Start typing"
-               placeholder="Start typing...">{{author}}</textarea>
+               placeholder="Author Name">{{Username}}</textarea>
          </div>
          <button type='submit' value='Submit' class="btn btn-primary px-1">Post</button>
       </div>

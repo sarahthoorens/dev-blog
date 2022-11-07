@@ -5,7 +5,7 @@ async function newFormHandler(event) {
   const author_name = document.querySelector('#author_name').value;
   // The following is a ternary operator. It checks to see if has_nuts is checked. If it is, it will return true, otherwise, it will return false.
   
-  // Send fetch request to add a new dish
+  // Send fetch request to add a new entry
   const response = await fetch(`/api/entryRoutes`, {
     method: 'POST',
     body: JSON.stringify({
