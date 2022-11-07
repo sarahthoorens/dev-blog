@@ -11,38 +11,15 @@
             {{title}}
          </div>
          <div class="card-body">
-            {{!-- <p class="card-text">{{content}}</p> --}}
+            <p class="card-text">{{content}}</p>
             <button class="submit_entry" type="submit" value="submit" class="btn btn-primary">Go to post</button>
          </div>
          <div class="card-footer text-muted">
-            {{author}} Posted on: {{entry_date}}
+            {{username}} Posted on: {{entry_date}}
          </div>
       </div>
+      {{comments post.comments}}
    </div>
    {{/each}}
-   <div class="card">
-      <div class="card-header">
-         Create New Post
-      </div>
-      <form class='new-entry-form'></form>
-      <div class="card-body">
-         <h5 class="card-title" id="entry_title">Title</h5>
-         <div class="input-group mb-3 pb-4">
-            <textarea class="form-control" aria-label="Small" placeholder="Enter title">{{title}}</textarea>
-         </div>
-         <h5 class="card-title">Content</h5>
-         <div class="input-group pb-4">
-            <textarea class="form-control" id="entry_content" aria-label="Start typing"
-               placeholder="Start typing...">{{content}}</textarea>
-         </div>
-         <div class="input-group pb-4">
-            <textarea class="form-control" id="author_name" aria-label="Start typing"
-               placeholder="Author Name">{{Username}}</textarea>
-         </div>
-         <button type='submit' value='Submit' class="btn btn-primary px-1">Post</button>
-      </div>
-   </div>
-</div>
-
-<!-- This is the form for adding a new blog entry-->
-<script src='/js/addEntry.js'></script>
+ 
+ <script src='/js/addEntry.js'></script>

@@ -4,12 +4,22 @@
          {{title}}
       </div>
       <div class="card-body">
-         
          <p class="card-text">{{content}}</p>
-         {{!-- <button type="submit" value="submit" class="btn btn-primary">Go to post</button> --}}
       </div>
       <div class="card-footer text-muted">
-         {{ author}} {{ entry_date }}
+         {{ user.username }} {{ entry_date }}
       </div>
+
+     {{#if loggedIn}}
+      <form class="comment-form">
+         <div>
+            <textarea class="form-control" name="comment-content"></textarea>
+         </div>
+         <section class="comment-button">
+            <button type="submit" value="submit" class="btn btn-primary">Add Comment</button>
+         </section>
+         {{> comments post.comments}}
+      {{/if}}
    </div>
-   </div>
+</div>
+ <script src="/dev-blog/public/js/comment"></script>

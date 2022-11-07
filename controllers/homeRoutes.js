@@ -1,11 +1,19 @@
 const router = require('express').Router();
+const { User } = require('../models');
 const Entry = require('../models/Entry');
 const withAuth = require('../utils/auth');
 
 // GET all blog entries for homepage
 router.get('/', async (req, res) => {
   try {
-    const dbEntryData = await Entry.findAll().catch((err) => { 
+    const dbEntryData = await Entry.findAll({
+      include: [
+        {model: Comment,
+        attributes: ['id', 'comment_content', 'user_id', 'entry_id']},
+        {model: User,
+        attributes: ['username']}
+      ]
+    }).catch((err) => { 
       res.json(err);
     });;
     const entries = dbEntryData.map((entry) =>
@@ -44,6 +52,7 @@ router.get('/entries/:id', async (req, res) => {
     }
   }
 );
+
 
 
 // route to create/add a blog entry using async/await
