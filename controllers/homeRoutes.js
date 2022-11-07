@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
     const entries = dbEntryData.map((entry) =>
     entry.get({ plain: true })
   );
-  res.render('allEntries', {
+  res.render('homepage', {
     entries,
     loggedIn: req.session.loggedIn,
   });
@@ -32,9 +32,9 @@ router.get('/', async (req, res) => {
 // GET one blog entry
 router.get('/entries/:id', async (req, res) => {
   // If the user is not logged in, redirect the user to the login page
-  // if (!req.session.loggedIn) {
-  //   res.redirect('/login');
-  // } else {
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+  } else {
     // If the user is logged in, allow them to view the painting
     try {
       const dbEntryData = await Entry.findByPk(req.params.id);
@@ -44,17 +44,14 @@ router.get('/entries/:id', async (req, res) => {
       }
       const entry = dbEntryData.get({ plain: true });
       res.render('entry', entry);
-      // , { 
+      // { 
       //   loggedIn: req.session.loggedIn }
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
     }
-  }
+  }}
 );
-
-
-
 // route to create/add a blog entry using async/await
 router.post('/', async (req, res) => {
   try { 
@@ -72,25 +69,7 @@ router.post('/', async (req, res) => {
 }
 });
 
-router.delete('/:id', async (req, res) => {
-   try {
-     const entryData = await Entry.destroy({
-       where: {
-         id: req.params.id,
-         user_id: req.session.user_id,
-       },
-     });
- 
-     if (!entryData) {
-       res.status(404).json({ message: 'No blog entry found with this id!' });
-       return;
-     }
- 
-     res.status(200).json(entryData);
-   } catch (err) {
-     res.status(500).json(err);
-   }
- });
+
  
  module.exports = router;
  
