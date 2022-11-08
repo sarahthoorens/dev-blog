@@ -1,11 +1,9 @@
-async function editFormHandler(event) {
+async function editButtonHandler(event) {
    event.preventDefault();
  
    const title = document.querySelector('#entry-title').value;
    const content = document.querySelector('#entry-content').value;
-   const id = window.location.toString().split('/')[
-       window.location.toString().split('/').length - 1
-     ];
+   const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
 
    const response = await fetch(`/api/entries/${id}`, {
        method: 'PUT',
@@ -24,5 +22,15 @@ async function editFormHandler(event) {
       alert('Failed to edit blog entry');
      }
  }
+
+ const deleteButtonHandler = async function() {
+  await fetch(`/api/post/${id}`, {
+    method: 'DELETE'
+  });
+
+  document.location.replace('/dashboard');
+};
+
  
- document.querySelector('.edit-entry-form').addEventListener('submit', editFormHandler);
+ document.querySelector('#.edit-entry-form').addEventListener('submit', editButtonHandler);
+ document.querySelector('#delete-button').addEventListener('click', deleteButtonHandler)

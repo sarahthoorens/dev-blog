@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const Comment = require('../models/Comment');
+const User = require('../models/User')
 const Entry = require('../models/Entry');
 const withAuth = require('../utils/auth');
 
@@ -8,20 +9,15 @@ router.get('/', async (req, res) => {
   try {
     const dbEntryData = await Entry.findAll({
       include: [
-        {model: Comment,
-        attributes: ['id', 'comment_content', 'user_id', 'entry_id']},
-        {model: User,
-        attributes: ['username']}
-      ]
-    }).catch((err) => { 
-      res.json(err);
-    });;
+        {model: User},
+        {model: Comment},
+      ],
+    })
     const entries = dbEntryData.map((entry) =>
     entry.get({ plain: true })
   );
   res.render('homepage', {
-    entries,
-    loggedIn: req.session.loggedIn,
+    entries
   });
   } catch (err) {
     console.log(err);
@@ -30,14 +26,22 @@ router.get('/', async (req, res) => {
 });
 
 // GET one blog entry
-router.get('/entries/:id', async (req, res) => {
+router.get('/entries/:id', withAuth, async (req, res) => {
   // If the user is not logged in, redirect the user to the login page
   if (!req.session.loggedIn) {
     res.redirect('/login');
   } else {
     // If the user is logged in, allow them to view the painting
     try {
-      const dbEntryData = await Entry.findByPk(req.params.id);
+      const dbEntryData = await Entry.findByPk(req.params.id, {
+        include: [
+          {
+            model: Comment,
+            attributes: [username],
+          },
+          {model: User}
+        ],
+      });
         if(!dbEntryData) {
           res.status(404).json({message: 'No entry with this id!'});
           return;
@@ -52,25 +56,23 @@ router.get('/entries/:id', async (req, res) => {
     }
   }}
 );
-// route to create/add a blog entry using async/await
-router.post('/', async (req, res) => {
-  try { 
-    const entryData = await Entry.create({
-    title: req.body.title,
-    content: req.body.content,
-    author: req.body.author,
-    entry_date: req.body.entry_date,
-    user_id: req.session.user_id,
-  });
-  // if the entry is successfully created, the new response will be returned as json
-  res.status(200).json(entryData)
-} catch (err) {
-  res.status(400).json(err);
-}
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('login');
+});
+
+router.get('/signup', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('signup');
 });
 
 
- 
- module.exports = router;
- 
 module.exports = router

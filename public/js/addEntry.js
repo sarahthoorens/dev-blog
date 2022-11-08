@@ -15,7 +15,7 @@ async function newFormHandler(event) {
       'Content-Type': 'application/json',
     },
   });
-  //if the dish is added, the 'all' template will be rerendered
+  //if the entry is added, the dashboard template with all entries will be rerendered
   if (response.ok) {
     document.location.replace('/dashboard');
   } else {

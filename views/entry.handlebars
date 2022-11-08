@@ -1,26 +1,55 @@
 <div="container-fluid">
    <div class="card text">
       <div class="card-header">
-         {{title}}
+         <a href="/entry/{{id}}">{{title}}</a>
       </div>
       <div class="card-body">
          <p class="card-text">{{content}}</p>
       </div>
       <div class="card-footer text-muted">
-         {{ user.username }} {{ entry_date }}
+         {{ user.username }} on {{ entry_date }}
       </div>
 
-     {{#if loggedIn}}
-      <form class="comment-form">
+{{#if loggedIn}}
+   {{#if entry.Comments}}
+   <section class="card">
+      <div class="card-header">
+         <h3>Comments</h3>
+      </div>
+
+      <div class="card-body">
+         {{#each entry.Comments}}
          <div>
-            <textarea class="form-control" name="comment-content"></textarea>
+            <p>
+               {{body}}
+            </p>
+            <p>
+               &mdash; {{User.username}}, {{entry_date}}
+            </p>
          </div>
-         <section class="comment-button">
-            <button type="submit" value="submit" class="btn btn-primary">Add Comment</button>
-         </section>
-         {{> comments entry.comments}}
-      {{/if}}
-   </div>
+         {{/each}}
+      </div>
+   </section>
+   {{/if}}
+{{/if}}
+</div>
+  <form id="new-comment-form" class="card">
+    <div class="card-header">
+      <h3>Add New Comment</h3>
+    </div>
+
+    <div class="card-body">
+      <input type="hidden" name="entrt-id" value="{{entry.id}}" />
+
+      <label class="form-label" for="comment-content">Comment</label>
+
+      <textarea name="comment-content" class="form-input"></textarea>
+
+      <button type='submit' value='Submit' class="btn btn-primary px-1">Submit Comment</button>
+    </div>
+  </form>
+</div>
+
 </div>
  <script src="./js/comment"></script>
  <script src="../public/js/editEntry.js"></script>

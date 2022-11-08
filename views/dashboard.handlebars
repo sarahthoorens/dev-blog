@@ -1,8 +1,19 @@
 <div class="container-fluid">>
    <h3 class="title">Your previous entries:</h3>
-{{> allEntries }}
-<form class="" id="edit-entry-form">
+   {{#each entries for |entry|}}
+   <form class="" id="entry-form">
+      <h2>
+         <a href="/post/{{id}}">{{title}}</a>
+      </h2>
+      <div>
+         Posted by {{User.username}} on {{entry_date}}
+      </div>
+</div>
+<div class="card-body">
+   {{body}}
+</div>
+</article>
+{{/each}}
 <a href="/dashboard/edit/{{entry.id}}"><button class="button" type="submit">Edit Entry</button></a>
 </form>
 </div>
-

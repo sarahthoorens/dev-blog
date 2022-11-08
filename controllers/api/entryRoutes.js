@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const Entry = require('../../models/Entry');
+const withAuth = require('../../utils/auth');
 
 // route to create/add a blog entry using async/await
 router.post('/', async (req, res) => {
@@ -26,21 +27,42 @@ router.post('/', async (req, res) => {
 }
 });
 
+
+router.put('/:id', withAuth, async (req, res) => {
+  try {
+    const dbEntryData = await Entry.update({
+      title: req.body.title,
+      entry_content: req.body.entry_content
+    },
+    {
+      where: {
+        id: req.params.id
+      }
+    })
+      if (!dbEntryData) {
+      res.status(404).json({ message: 'No entry found with this id' });
+      return;
+      };
+      res.json(dbEntryData);
+    } catch (err) {
+      res.status(400).json(err);
+    };
+});
+
+
 router.delete('/:id', async (req, res) => {
    try {
-     const entryData = await Project.destroy({
+     const dbEntryData = await Entry.destroy({
        where: {
          id: req.params.id,
          user_id: req.session.user_id,
        },
      });
- 
-     if (!entryData) {
+     if (!dbEntryData) {
        res.status(404).json({ message: 'No blog entry found with this id!' });
        return;
      }
- 
-     res.status(200).json(entryData);
+     res.status(200).json(dbEntryData);
    } catch (err) {
      res.status(500).json(err);
    }

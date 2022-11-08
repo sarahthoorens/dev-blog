@@ -15,10 +15,6 @@ Entry.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    author: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     entry_date: {
       type: DataTypes.DATE,
       allowNull: false,

@@ -4,7 +4,7 @@
          All Blog Entries
       </h2>
    </div>
-   {{#each entries as |entry|}}
+   {{#each entry }}
    <div class="container-fluid">
       <div class="card text">
          <div class="card-header">
@@ -15,11 +15,10 @@
             <button class="submit_entry" type="submit" value="submit" class="btn btn-primary">Go to post</button>
          </div>
          <div class="card-footer text-muted">
-            {{username}} Posted on: {{entry_date}}
+            {{User.username}} Posted on: {{entry_date}}
          </div>
       </div>
-      {{comments entry.comments}}
+      {{comments Entry.comments}}
    </div>
    {{/each}}
  
- <script src='/js/addEntry.js'></script>

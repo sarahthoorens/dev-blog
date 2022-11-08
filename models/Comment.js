@@ -16,7 +16,7 @@ Comment.init(
          allowNull: false,
        },
     comment_date: {
-      type: DataTypes.NOW,
+      type: DataTypes.DATE,
     },
     user_id: {
         type: DataTypes.INTEGER,
