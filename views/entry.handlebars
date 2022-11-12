@@ -1,55 +1,21 @@
-<div="container-fluid">
-   <div class="card text">
-      <div class="card-header">
-         <a href="/entry/{{id}}">{{title}}</a>
-      </div>
-      <div class="card-body">
-         <p class="card-text">{{content}}</p>
-      </div>
-      <div class="card-footer text-muted">
-         {{ user.username }} on {{ entry_date }}
-      </div>
+{{> entry-info entry}}
+
 
 {{#if loggedIn}}
-   {{#if entry.Comments}}
-   <section class="card">
-      <div class="card-header">
-         <h3>Comments</h3>
-      </div>
+<form class="comment-form">
+  <div>
+    <textarea class="ml-5" name="comment-content"></textarea>
+  </div>
 
-      <div class="card-body">
-         {{#each entry.Comments}}
-         <div>
-            <p>
-               {{body}}
-            </p>
-            <p>
-               &mdash; {{User.username}}, {{entry_date}}
-            </p>
-         </div>
-         {{/each}}
-      </div>
-   </section>
-   {{/if}}
+  <div>
+    <button class="button is-warning ml-5 mb-5" type="submit">Comment</button>
+  </div>
+  
+</form>
 {{/if}}
-</div>
-  <form id="new-comment-form" class="card">
-    <div class="card-header">
-      <h3>Add New Comment</h3>
-    </div>
 
-    <div class="card-body">
-      <input type="hidden" name="entrt-id" value="{{entry.id}}" />
+{{> comments entry.comments}}
 
-      <label class="form-label" for="comment-content">Comment</label>
-
-      <textarea name="comment-content" class="form-input"></textarea>
-
-      <button type='submit' value='Submit' class="btn btn-primary px-1">Submit Comment</button>
-    </div>
-  </form>
-</div>
-
-</div>
- <script src="./js/comment"></script>
- <script src="../public/js/editEntry.js"></script>
+{{#if loggedIn}}
+<script src="/js/comment.js"></script>
+{{/if}}

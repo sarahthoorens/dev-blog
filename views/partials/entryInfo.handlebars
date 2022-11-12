@@ -1,0 +1,24 @@
+<div class="card mb-6">
+  <header class="card-header card-header-title">
+    
+        <div class="column">
+            <p class=""></p>
+      <a href="/entry/{{id}}"  class="">{{title}}</a></p>
+      </div>
+
+      <div class="column">
+      <span class=""></span>
+      </div>
+    
+  </header>
+
+    <div class="card-content">
+        <div class="content">
+            {{entry_content}}
+        </div>
+            <div class="is-pulled-right">
+                <b>{{user.username}}</b> | 
+                 | {{format_time created_at}}  <a href="/entry/{{id}}">{{comments}}</a>
+            </div>
+        
+    </div>

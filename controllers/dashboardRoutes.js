@@ -1,48 +1,71 @@
 const router = require('express').Router();
-const { Entry } = require('../models/');
+const { Entry, User, Comment} = require('../models/');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
   try {
     const entryData = await Entry.findAll({
-      where: {
-        userId: req.session.userId,
-      },
+      attributes: ['id', 'title', 'created_at', 'entry_content'],
+      include: 
+      [ { model: Comment, include: { User } },
+        { User } 
+      ]
     });
+    const entries = entryData.map((entry) => entry.get({ plain: true }));
 
-    const posts = entryData.map((post) => entry.get({ plain: true }));
-
-    res.render('all-posts-admin', {
-      layout: 'dashboard',
-      posts,
+    res.render('homepage', {
+      entries,
+      loggedIn: true
     });
   } catch (err) {
-    res.redirect('login');
+    res.status(500).json(err);
   }
 });
 
-router.get('/new', withAuth, (req, res) => {
-  res.render('new-post', {
-    layout: 'dashboard',
-  });
-});
+router.get('/add', withAuth, (req, res) => {
+  try { const dbAdd = Entry.findAll({
+    where: {
+      user_id: req.session.user_id
+    },
+    attributes: ['id', 'title', 'created_at', 'entry_content'],
+    include: [{ model: Comment, include: { User }}, 
+      { User }
+    ]
+  })
+    const entries = dbAdd.map(entry => entry.get({ plain: true }));
+      res.render('addEntry', { 
+        entries, 
+        loggedIn: true 
+      })
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  })
 
-router.get('/edit/:id', withAuth, async (req, res) => {
+router.get('/entry/:id', withAuth, async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id);
+    const entryData = await Entry.fEntry.findAll({
+      where: {
+        user_id: req.session.user_id
+      },
+      attributes: ['id', 'title', 'created_at', 'entry_content'],
+      include: [{ model: Comment, include: { User }}, 
+        { User }
+      ]
+    })
+    if (entryData) {
+      const entry = entryData.get({ plain: true });
 
-    if (postData) {
-      const post = postData.get({ plain: true });
+      res.render('editEntry', {
+        entry
 
-      res.render('edit-post', {
-        layout: 'dashboard',
-        post,
       });
     } else {
       res.status(404).end();
     }
   } catch (err) {
-    res.redirect('login');
+    res.redirect('/');
   }
 });
 

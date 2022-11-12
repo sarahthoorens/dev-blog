@@ -1,78 +1,77 @@
 const router = require('express').Router();
-const Comment = require('../models/Comment');
-const User = require('../models/User')
-const Entry = require('../models/Entry');
-const withAuth = require('../utils/auth');
+const sequelize = require('../config/connection');
+const { Entry, User, Comment } = require('../models');
 
-// GET all blog entries for homepage
 router.get('/', async (req, res) => {
-  try {
-    const dbEntryData = await Entry.findAll({
+     try { const dbEntry = await Entry.findAll({
+      attributes: ['id', 'title', 'created_at','entry_content'],
       include: [
-        {model: User},
-        {model: Comment},
-      ],
-    })
-    const entries = dbEntryData.map((entry) =>
-    entry.get({ plain: true })
-  );
-  res.render('homepage', {
-    entries
-  });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-// GET one blog entry
-router.get('/entries/:id', withAuth, async (req, res) => {
-  // If the user is not logged in, redirect the user to the login page
-  if (!req.session.loggedIn) {
-    res.redirect('/login');
-  } else {
-    // If the user is logged in, allow them to view the painting
-    try {
-      const dbEntryData = await Entry.findByPk(req.params.id, {
-        include: [
-          {
-            model: Comment,
-            attributes: [username],
-          },
-          {model: User}
-        ],
+        {
+          model: Comment,
+          attributes: ['id', 'comment_content', 'entry_id', 'user_id', 'created_at'],
+          include: { model: User, attributes: ['username'],
+          }
+        },
+        {
+          model: User,
+          attributes: ['username'],
+        }]
       });
-        if(!dbEntryData) {
-          res.status(404).json({message: 'No entry with this id!'});
-          return;
-      }
-      const entry = dbEntryData.get({ plain: true });
-      res.render('entry', entry);
-      // { 
-      //   loggedIn: req.session.loggedIn }
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
-  }}
-);
+      const entries = dbEntry.map(entry => entry.get({ plain: true }));
+        
+      res.render('homepage', {
+            entries,
+            loggedIn: req.session.loggedIn
+          })
+        }catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+        res.redirect('/login')
+      };
+    })
+
 router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
+    if (req.session.loggedIn) {
+      res.redirect('/dashboard');
 
-  res.render('login');
-});
+    }
+    res.render ('login');
+  });
 
-router.get('/signup', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
+  router.get('/signup', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render('login');
+  });
 
-  res.render('signup');
-});
+  router.get('/entry/:id', (req, res) => {
+    try { const dbEntry = Entry.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: [ 'id', 'title', 'entry_content', 'created_at',],
+      include: [
+        {
+          model: Comment,
+          include: [User] 
+        },
+        {
+          model: User,
 
-
-module.exports = router
+        }]
+      });
+       if (dbEntry) {const entry = dbEntry.get({ plain: true });
+        res.render('entry', {
+            entry,
+            // loggedIn: req.session.loggedIn
+          })} else {
+            res.status(404).end();
+          }
+        } catch (err) {
+          res.status(500).json(err);
+        }
+      })
+  module.exports = router;

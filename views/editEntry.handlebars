@@ -1,28 +1,27 @@
- <div class="card">
-      <div class="card-header">
-         Create New Post
-      </div>
-      <form id="edit-entry-form" class="card-body">
-      <input type="hidden" name="entry-id" value="{{.id}}" >
-      <div class="card-body">
-         <h5 class="card-title" id="entry_title">Title</h5>
-         <div class="input-group mb-3 pb-4">
-            <textarea class="form-control" aria-label="Small" placeholder="Enter title">{{entry.title}}</textarea>
-         </div>
-         <h5 class="card-title">Content</h5>
-         <div class="input-group pb-4">
-            <textarea class="form-control" id="entry_content" aria-label="Start typing"
-               placeholder="Start typing...">{{entry.body}}</textarea>
-         </div>
-         <div class="input-group pb-4">
-            <textarea class="form-control" id="author_name" aria-label="Start typing"
-               placeholder="Author Name"></textarea>
-         </div>
-          </form>
-           <button type='submit' value='Submit' class="btn btn-primary px-1">Update Entry</button>
-         <button type='submit' value='Submit' class="btn btn-primary px-1">Delete Entry</button>
-      </div>
-   </div>
-</div>
+<article>
+  <a href="/dashboard" class=""> &larr; Return to Dashboard</a>
+  <h2 class="title">Edit Entry</h2><hr>
+  <form class="edit-entry-form">
+    <div>
+        <label for="entry-title">entry title:</label>
+      <input class="input" name="entry-title" type="text" value="{{entry.title}}" />
+    </div>
+    <div>
+        <label for="entry-content">entry content:</label>
+      <input class="textarea" name="entry-content" type="text" value="{{entry.entry_content}}" />
+    </div>
+    <div class="is-pulled-right">
+       {{format_time entry.created_at}}
+      |
+      <a href="/entry/{{entry.id}}">{{entry.comments}}</a>
+    </div>
+    <button type="submit" class="button">Update Entry</button>
+    <button type="button" class="button warning delete-entry-btn">Delete Entry</button>
+  </form>
+</article>
 
-<script src="/js/edit.js"></script>
+{{> comments entry.comments}}
+
+<script src="/js/editEntry.js"></script>
+<script src="/js/deleteEntry.js"></script>
+<script src="/js/comment.js"></script>

@@ -2,10 +2,8 @@ async function newFormHandler(event) {
   event.preventDefault();
   const title = document.querySelector('#entry_title').value;
   const content = document.querySelector('#entry_content').value;
-
   
-  // Send fetch request to add a new entry
-  const response = await fetch(`/api/entries`, {
+  const response = await fetch(`/api/entry`, {
     method: 'POST',
     body: JSON.stringify({
       title,

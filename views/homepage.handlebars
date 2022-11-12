@@ -1,24 +1,8 @@
-<div class='entries-container'>
-   <div class='card-header'>
-      <h2>
-         All Blog Entries
-      </h2>
-   </div>
-   {{#each entry }}
-   <div class="container-fluid">
-      <div class="card text">
-         <div class="card-header">
-            {{title}}
-         </div>
-         <div class="card-body">
-            <p class="card-text">{{content}}</p>
-            <button class="submit_entry" type="submit" value="submit" class="btn btn-primary">Go to post</button>
-         </div>
-         <div class="card-footer text-muted">
-            {{User.username}} Posted on: {{entry_date}}
-         </div>
-      </div>
-      {{comments Entry.comments}}
-   </div>
-   {{/each}}
- 
+{{#each entries as |entry|}}
+
+{{> entryInfo entry }}
+</div>
+
+{{else}}
+<h6 class="pb-3">No Entries to Show</h6>
+{{/each}}

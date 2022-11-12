@@ -1,4 +1,23 @@
 {
+  "name": "dev-blog",
+  "version": "2.0.0",
+  "description": "Dev blog made with MVC paradigm",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeds/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarahthoorens/dev-blog"
+  },
+  "author": "Sarah Thoorens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sarahthoorens/dev-blog"
+  },
+  "homepage": "https://github.com/sarahthoorens/dev-blog#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "connect-session-sequelize": "^7.1.5",

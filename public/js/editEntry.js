@@ -5,7 +5,7 @@ async function editButtonHandler(event) {
    const content = document.querySelector('#entry-content').value;
    const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
 
-   const response = await fetch(`/api/entries/${id}`, {
+   const response = await fetch(`/api/entry/${id}`, {
        method: 'PUT',
        body: JSON.stringify({
            title,
@@ -24,7 +24,7 @@ async function editButtonHandler(event) {
  }
 
  const deleteButtonHandler = async function() {
-  await fetch(`/api/post/${id}`, {
+  await fetch(`/api/entry/${id}`, {
     method: 'DELETE'
   });
 

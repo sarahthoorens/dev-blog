@@ -2,7 +2,6 @@ const User = require('./User');
 const Comment = require ('./Comment')
 const Entry = require('./Entry');
 
-module.exports = { User }, { Entry }
 
 User.hasMany(Entry, {
    foreignKey: 'user_id',
@@ -30,5 +29,5 @@ Entry.belongsTo(User, {
   onDelete: 'CASCADE'
  })
  
- module.exports = { User, Entry };
+ module.exports = { User, Entry, Comment };
  

@@ -1,19 +1,18 @@
-<div class="container-fluid">>
-   <h3 class="title">Your previous entries:</h3>
-   {{#each entries for |entry|}}
-   <form class="" id="entry-form">
-      <h2>
-         <a href="/post/{{id}}">{{title}}</a>
-      </h2>
-      <div>
-         Posted by {{User.username}} on {{entry_date}}
-      </div>
-</div>
-<div class="card-body">
-   {{body}}
-</div>
-</article>
-{{/each}}
-<a href="/dashboard/edit/{{entry.id}}"><button class="button" type="submit">Edit Entry</button></a>
-</form>
-</div>
+    <div class="mb-5 pt-3">
+        <a href="/dashboard/add/"><button id="add-post" class="button">Add Blog Entry</button></a>
+        
+        <h2 class="title">Dashboard View</h2><hr>
+{{#if entries.length}}
+    </div>
+
+    {{#each entries as |entry|}}
+        {{> entries-info entry}}
+        
+            <a href="/dashboard/edit/{{entry.id}}"><button class="button">Edit Entry</button></a>
+        </div>
+    {{/each}}
+
+{{else}}
+<h4 class="">No Posts Yet!</h4>
+
+{{/if}}
