@@ -20,7 +20,7 @@ router.post('/', withAuth, async (req, res) => {
   try {
    const commentData = await Comment.create({
    comment_content: req.body.comment_content,
-   entrytid: req.body.entry_id,
+   entry_id: req.body.entry_id,
    comment_date: req.body.comment_date,
    user_id: req.session.user_id,
   })

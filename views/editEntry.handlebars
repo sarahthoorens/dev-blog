@@ -3,7 +3,7 @@
   <h2 class="title">Edit Entry</h2><hr>
   <form class="edit-entry-form">
     <div>
-        <label for="entry-title">entry title:</label>
+        <label for="entry-title">Title:</label>
       <input class="input" name="entry-title" type="text" value="{{entry.title}}" />
     </div>
     <div>
@@ -11,16 +11,16 @@
       <input class="textarea" name="entry-content" type="text" value="{{entry.entry_content}}" />
     </div>
     <div class="is-pulled-right">
-       {{format_time entry.created_at}}
+       {{entry.created_at}}
       |
-      <a href="/entry/{{entry.id}}">{{entry.comments}}</a>
+      <a href="dashboard/entry/{{entry.id}}">{{entry.comments}}</a>
     </div>
     <button type="submit" class="button">Update Entry</button>
-    <button type="button" class="button warning delete-entry-btn">Delete Entry</button>
+    <button type="submit" class="button warning delete-entry-btn">Delete Entry</button>
   </form>
 </article>
 
-{{> comments entry.comments}}
+{{> entry.comments}}
 
 <script src="/js/editEntry.js"></script>
 <script src="/js/deleteEntry.js"></script>

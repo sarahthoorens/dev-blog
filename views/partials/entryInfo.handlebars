@@ -3,9 +3,8 @@
     
         <div class="column">
             <p class=""></p>
-      <a href="/entry/{{id}}"  class="">{{title}}</a></p>
+      <a href="dashboard/entry/{{id}}"  class="">{{title}}</a></p>
       </div>
-
       <div class="column">
       <span class=""></span>
       </div>
@@ -16,9 +15,8 @@
         <div class="content">
             {{entry_content}}
         </div>
-            <div class="is-pulled-right">
-                <b>{{user.username}}</b> | 
-                 | {{format_time created_at}}  <a href="/entry/{{id}}">{{comments}}</a>
+            <div class="card footer">
+                <b>{{user.username}}</b> |  {{created_at}} <p>{{comments}}</p> 
             </div>
         
     </div>

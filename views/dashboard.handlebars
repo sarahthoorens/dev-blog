@@ -1,14 +1,14 @@
     <div class="mb-5 pt-3">
-        <a href="/dashboard/add/"><button id="add-post" class="button">Add Blog Entry</button></a>
+        <a href="/dashboard/add/"><button id="add-post" class="button">Add New Blog Entry</button></a>
         
-        <h2 class="title">Dashboard View</h2><hr>
+        <h2 class="title">Welcome to your dashboard!</h2>
 {{#if entries.length}}
     </div>
 
     {{#each entries as |entry|}}
-        {{> entries-info entry}}
+        {{> entryInfo entry}}
         
-            <a href="/dashboard/edit/{{entry.id}}"><button class="button">Edit Entry</button></a>
+            <a href="dashboard/entry/{{entry.id}}"><button class="button">Edit Entry</button></a>
         </div>
     {{/each}}
 

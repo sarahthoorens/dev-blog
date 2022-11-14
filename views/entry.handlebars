@@ -2,15 +2,16 @@
 
 
 {{#if loggedIn}}
+Leave a comment: 
+
 <form class="comment-form">
   <div>
     <textarea class="ml-5" name="comment-content"></textarea>
   </div>
-
   <div>
-    <button class="button is-warning ml-5 mb-5" type="submit">Comment</button>
+    <button class="button" type="submit">Comment</button>
   </div>
-  
+  <button class="button" type="submit">Logout</button>
 </form>
 {{/if}}
 
@@ -18,4 +19,5 @@
 
 {{#if loggedIn}}
 <script src="/js/comment.js"></script>
+<script src="/js/logout.js"></script>
 {{/if}}
