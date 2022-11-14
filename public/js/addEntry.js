@@ -1,7 +1,7 @@
 async function newFormHandler(event) {
   event.preventDefault();
-  const title = document.querySelector('#entry_title').value;
-  const content = document.querySelector('#entry_content').value;
+  const title = document.querySelector('input[name="entry-title"]').value;
+  const content = document.querySelector('input[name="entry-content"]').value;
   
   const response = await fetch(`/api/entry`, {
     method: 'POST',
@@ -21,5 +21,5 @@ async function newFormHandler(event) {
   }
 }
 
-document.querySelector('.new-entry-form').addEventListener('submit', newFormHandler);
+document.querySelector('.add-entry-form').addEventListener('submit', newFormHandler);
   

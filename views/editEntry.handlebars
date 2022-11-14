@@ -7,21 +7,18 @@
       <input class="input" name="entry-title" type="text" value="{{entry.title}}" />
     </div>
     <div>
-        <label for="entry-content">entry content:</label>
-      <input class="textarea" name="entry-content" type="text" value="{{entry.entry_content}}" />
+        <label for="entry-content">Entry Content:</label>
+      <textarea class="form-control" name="entry-content" type="text" rows="10" value=""/>{{entry.entry_content}}</textarea>
     </div>
-    <div class="is-pulled-right">
-       {{entry.created_at}}
-      |
-      <a href="dashboard/entry/{{entry.id}}">{{entry.comments}}</a>
+   <div class="entry-footer">
+   <b>{{user.username}}</b>{{created_at}} 
+      {{#if user.comments}}
+      <a href="dashboard/entry/{{id}}">{{user.comments}}</a>
+      {{/if}}
     </div>
     <button type="submit" class="button">Update Entry</button>
     <button type="submit" class="button warning delete-entry-btn">Delete Entry</button>
   </form>
 </article>
 
-{{> entry.comments}}
-
 <script src="/js/editEntry.js"></script>
-<script src="/js/deleteEntry.js"></script>
-<script src="/js/comment.js"></script>

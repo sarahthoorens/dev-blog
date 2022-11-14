@@ -1,15 +1,19 @@
 <section>
-    <a href="/dashboard" class=""> &larr; Return to Dashboard</a>
-  <h2 class="title">Create a New Blog Entry</h2><hr>
+  <a href="/dashboard" class=""> &larr; Return to Dashboard</a>
+  <h2 class="title">Create a New Blog Entry</h2>
+  <hr>
 
-  <form class="new-entry-form">
+  <form class="add-entry-form">
     <div>
       <label for="post-title">Title</label>
-      <input class="input" type="text" id="entry-title" name="entry-title" placeholder="insert blog title here"/>
+      <input class="input" type="text" id="entry-title" name="entry-title" placeholder="insert blog title here" />
     </div>
     <div>
-      <label for="entry-content">content:</label>
-      <input class="textarea is-large" id="entry-content" name="entry-content" placeholder="Start typing..."/>
+      <div>
+        <label for="entry-content">Content:</label>
+        <div class="input-group">
+        <input class="form-control" id="entry-content" name="entry-content" placeholder="Start typing..." />
+      </div>
     </div>
     <button type="submit" class="button ">Add Blog Entry</button>
   </form>

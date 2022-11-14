@@ -1,15 +1,15 @@
 async function editButtonHandler(event) {
    event.preventDefault();
  
-   const title = document.querySelector('#entry-title').value;
-   const content = document.querySelector('#entry-content').value;
+   const title = document.querySelector('input[name="entry-title"]').value;
+   const content = document.querySelector('textarea[name="entry-content"]').value;
    const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
 
    const response = await fetch(`/api/entry/${id}`, {
        method: 'PUT',
        body: JSON.stringify({
            title,
-           post_content
+           content,
        }),
        headers: {
            'Content-Type': 'application/json'
@@ -17,7 +17,7 @@ async function editButtonHandler(event) {
      });
      
      if (response.ok) {
-       document.location.replace('/dashboard/');
+       document.location.replace('/dashboard');
      } else {
       alert('Failed to edit blog entry');
      }
@@ -32,5 +32,5 @@ async function editButtonHandler(event) {
 };
 
  
- document.querySelector('#.edit-entry-form').addEventListener('submit', editButtonHandler);
- document.querySelector('#delete-button').addEventListener('click', deleteButtonHandler)
+ document.querySelector('.edit-entry-form').addEventListener('submit', editButtonHandler);
+ document.querySelector('.delete-entry-btn').addEventListener('submit', deleteButtonHandler)

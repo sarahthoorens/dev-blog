@@ -4,9 +4,7 @@ const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
   try { const entryData = await Entry.findAll({
-      where: {
-        user_id: req.session.user_id
-      },
+    where: { user_id: req.session.user_id },
       attributes: ['id', 'title', 'created_at', 'entry_content'],
       include: [
         {
@@ -34,36 +32,19 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 router.get('/add', withAuth, (req, res) => {
-  try { const dbAdd = Entry.findAll({
-    where: {
-      user_id: req.session.user_id
-    },
-    attributes: ['id', 'title', 'created_at', 'entry_content'],
-    include: [{ model: Comment, include: { User }}, 
-      { User }
-    ]
-  });
-    const entries = dbAdd.map(entry => entry.get({ plain: true }));
+  try { 
       res.render('addEntry', { 
-        entries,
         loggedIn: true 
       })
     } catch (err) {
       res.status(500).json(err);
+      res.redirect('/dashboard')
     }
   })
 
 router.get('/entry/:id', withAuth, async (req, res) => {
-  try {
-    const entryData = await Entry.fEntry.findAll({
-      where: {
-        user_id: req.session.user_id
-      },
-      attributes: ['id', 'title', 'created_at', 'entry_content'],
-      include: [{ model: Comment, include: { User }}, 
-        { User }
-      ]
-    })
+  try { const entryData = await Entry.findByPk(req.params.id);
+
     if (entryData) {
       const entry = entryData.get({ plain: true });
 
@@ -75,7 +56,7 @@ router.get('/entry/:id', withAuth, async (req, res) => {
       res.status(404).end();
     }
   } catch (err) {
-    res.redirect('/');
+    res.redirect('/dashboard');
   }
 });
 
