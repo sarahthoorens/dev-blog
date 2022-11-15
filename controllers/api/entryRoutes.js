@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Entry } = require('../../models');
+const { Entry } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // route to create/add a blog entry using async/await
