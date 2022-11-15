@@ -19,31 +19,29 @@ async function loginFormHandler(event) {
   }
 }
 
-
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
-  const username = document.querySelector('#username-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
+  const username = document.querySelector('#username-signup').value;
+  const email = document.querySelector('#email-signup').value;
+  const password = document.querySelector('#password-signup').value;
 
 
   if (username && email && password) {
-    const response = await fetch('/api/user/login', {
+    const response = await fetch('/api/user', {
       method: 'POST',
       body: JSON.stringify({ username, email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-      console.log('good');
-      document.location.replace('/dashboard');
+      alert('Signup successful! You have been logged in.');
+      document.location.replace('/');
     } else {
       alert('Signup failed.');
     }
   };
 }
 
-document.querySelector('#login-btn').addEventListener('click', loginFormHandler);
-
-document.querySelector('#signup-btn').addEventListener('click', signupFormHandler);
+document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);

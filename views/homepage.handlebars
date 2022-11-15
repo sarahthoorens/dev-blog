@@ -6,3 +6,17 @@
 {{else}}
 <h6 class="pb-3">No Entries to Show</h6>
 {{/each}}
+<div class="card mb-6">
+   <div class="column">
+      <a href="/dashboard/add/"  class="">Add New Blog Entry</a></p>
+       <a href="/" class=""> &larr; Return to Homepage</a>
+    </div>
+    </card>
+   {{#if loggedIn}}
+<form class="logout-form">
+    <a href="/user/logout"><button class="button" type="submit">Logout</button></a>
+</form>
+</card>
+<script src="js/logout.js"></script>
+{{/if}}
+</div>

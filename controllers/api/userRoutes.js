@@ -12,14 +12,13 @@ router.post('/', async (req, res) => {
     );
 
     req.session.save(() => {
-      req.session.user_id = userData.id;
+      req.session.userId = userData.id;
       req.session.username = userData.username;
       req.session.loggedIn = true;
-
-      res.status(200).json(userData);
+      res.json(userData);
     });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({message: 'Sign-up failed. Username already exists'});
   }
 });
 
@@ -59,11 +58,5 @@ router.post('/logout', (req, res) => {
   }
 });
 
-router.post('/signup', (req, res) => {
-  if (req.session.loggedIn) {
-    return;
-  }
-  res.render('login');
-});
 
 module.exports = router;

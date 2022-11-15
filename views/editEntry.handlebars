@@ -8,12 +8,12 @@
     </div>
     <div>
         <label for="entry-content">Entry Content:</label>
-      <textarea class="form-control" name="entry-content" type="text" rows="10" value=""/>{{entry.entry_content}}</textarea>
+      <textarea class="form-control" name="entry-content" type="text" rows="10" />{{entry.entry_content}}</textarea>
     </div>
    <div class="entry-footer">
-   <b>{{user.username}}</b>{{created_at}} 
+   <b>{{this.username}}</b>{{created_at}} 
       {{#if user.comments}}
-      <a href="dashboard/entry/{{id}}">{{user.comments}}</a>
+      <a href="dashboard/entry/{{id}}">{{this.comments}}</a>
       {{/if}}
     </div>
     <button type="submit" class="button">Update Entry</button>

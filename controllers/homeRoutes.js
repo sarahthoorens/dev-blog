@@ -3,21 +3,21 @@ const sequelize = require('../config/connection');
 const { Entry, User, Comment } = require('../models');
 
 router.get('/', async (req, res) => {
-     try { const dbEntry = await Entry.findAll({
-      attributes: ['id', 'title', 'created_at','entry_content'],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id', 'comment_content', 'entry_id', 'user_id', 'created_at'],
-          include: { model: User, attributes: ['username'],
-          }
-        },
-        {
-          model: User,
-          attributes: ['username'],
-        }]
-      });
-      const entries = dbEntry.map(entry => entry.get({ plain: true }));
+    try { const dbEntry = await Entry.findAll({
+    attributes: ['id', 'title', 'created_at','entry_content'],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_content', 'entry_id', 'user_id', 'created_at'],
+        include: { model: User, attributes: ['username'],
+        }
+      },
+      {
+        model: User,
+        attributes: ['username'],
+      }]
+    });
+    const entries = dbEntry.map(entry => entry.get({ plain: true }));
         
       res.render('homepage', {
             entries,
@@ -49,29 +49,20 @@ router.get('/login', (req, res) => {
 
   router.get('/entry/:id', (req, res) => {
     try { const dbEntry = Entry.findOne({
-      where: {
-        id: req.params.id
-      },
-      attributes: [ 'id', 'title', 'entry_content', 'created_at',],
       include: [
-        {
-          model: Comment,
-          include: [User] 
-        },
-        {
-          model: User,
-
-        }]
+        {model: Comment}, 
+        {model: User}
+    ]
       });
-       if (dbEntry) {const entry = dbEntry.get({ plain: true });
+       if (dbEntry) 
+       {const entry = dbEntry.get({ plain: true });
         res.render('entry', {
-            entry,
-            // loggedIn: req.session.loggedIn
-          })} else {
-            res.status(404).end();
-          }
+            entry         
+          })} 
         } catch (err) {
-          res.status(500).json(err);
-        }
-      })
+            console.log(err);
+            res.status(500).json(err);
+            res.redirect('/login')
+          }
+          });
   module.exports = router;
