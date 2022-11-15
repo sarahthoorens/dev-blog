@@ -11,7 +11,7 @@
       <textarea class="form-control" name="entry-content" type="text" rows="10" />{{entry.entry_content}}</textarea>
     </div>
    <div class="entry-footer">
-   <b>{{this.username}}</b>{{created_at}} 
+   <b>{{entry.username}}</b>{{created_at}} 
       {{#if user.comments}}
       <a href="dashboard/entry/{{id}}">{{this.comments}}</a>
       {{/if}}

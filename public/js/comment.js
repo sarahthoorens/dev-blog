@@ -8,8 +8,8 @@ async function commentFormHandler(event) {
        const response = await fetch('/api/comment', {
          method: 'POST',
          body: JSON.stringify({
-           entry_id,
-           comment_content,
+           entry_id: entry_id,
+           comment_content: comment_content,
          }), 
          headers: {
            'Content-Type': 'application/json'

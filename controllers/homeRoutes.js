@@ -47,22 +47,27 @@ router.get('/login', (req, res) => {
     res.render('login');
   });
 
-  router.get('/entry/:id', (req, res) => {
-    try { const dbEntry = Entry.findOne({
-      include: [
-        {model: Comment}, 
-        {model: User}
-    ]
-      });
-       if (dbEntry) 
-       {const entry = dbEntry.get({ plain: true });
-        res.render('entry', {
-            entry         
-          })} 
-        } catch (err) {
-            console.log(err);
-            res.status(500).json(err);
-            res.redirect('/login')
-          }
-          });
+  router.get('/entry/:id', async (req, res) => {
+    try { const entryData = await Entry.findOne({ where: { id: req.params.id },
+      include: [{ model:User }, 
+        { model:Comment, 
+          include: { model: User, attributes: ['username']} 
+        }],
+    });
+      if (entryData) {;
+        console.log(entryData)
+       const entry = entryData.get({ plain: true });
+        console.log(entry);
+        res.render('Entry', {
+          entry,
+          loggedIn: req.session.loggedIn
+  
+        });
+      } else {
+        res.status(404).end();
+      }
+    } catch (err) {
+      res.redirect('/');
+    }
+  });
   module.exports = router;

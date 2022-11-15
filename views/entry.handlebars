@@ -1,6 +1,30 @@
-{{> entry-info entry}}
+<div class="card mb-6">
+  <header class="card-header card-header-title">
+        <div class="column">
+      <a href="/entry/{{entry.id}}" class="">{{entry.title}}</a></p>
+      </div>
+  </header>
+    <div class="card-content">
+        <div class="content">
+            {{entry.entry_content}}
+        </div>
+           <div class="card-footer">
+            <h6>Comments:</h6>
+            <ul class="list-group">
 
-
+                {{#each entry.comments as |comment|}}                          
+                  <li class="list-group-item">
+                    <div>
+                        <p>{{comment.comment_content}}</p>
+                       <p>By: {{comment.user.username}} on {{format_date comment.createdAt}}</p>
+                    </div>
+                </li>    
+                {{/each}}
+            </ul> 
+        </div>   
+    </div>
+</div>
+</section>
 {{#if loggedIn}}
 Leave a comment: 
 
@@ -9,13 +33,11 @@ Leave a comment:
     <textarea class="ml-5" rows="3" name="comment-content"></textarea>
   </div>
   <div>
-    <button class="button" type="submit">Comment</button>
+    <button class="button" type="submit">Post Comment</button>
   </div>
   <button class="button" type="submit">Logout</button>
 </form>
 {{/if}}
-
-{{> comments entry}}
 
 {{#if loggedIn}}
 <script src="/js/comment.js"></script>

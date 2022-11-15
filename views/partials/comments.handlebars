@@ -1,12 +1,17 @@
 <div class="comments">
-  {{#each this}}
+  {{#each comments as |comment|}}
+    <div class="comment">
+      <p>{{comment.comment_content}}</p>
+      <p>Posted by {{comment.username}} on {{format_date comment.created_at}}</p>
+    </div>
+  {{!-- {{/each}}
   <section class="comment">
     <div class="user-details">
-     Posted by {{user.username}} on {{created_at}}
+     Posted by {{username}} on {{created_at}}
     </div>
     <div class="content">
       {{comment_content}}
     </div>
-  </section>
+  </section> --}}
   {{/each}}
 </div>

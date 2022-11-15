@@ -43,8 +43,14 @@ router.get('/add', withAuth, (req, res) => {
   })
 
 router.get('/entry/:id', withAuth, async (req, res) => {
-  try { const entryData = await Entry.findByPk(req.params.id);
-
+  try { const entryData = await Entry.findByPk(req.params.id,{
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_content', 'entry_id', 'user_id', 'created_at'],
+        include: { model: User, attributes: ['username'] }
+      }]
+  });
     if (entryData) {
       const entry = entryData.get({ plain: true });
 
