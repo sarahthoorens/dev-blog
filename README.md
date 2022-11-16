@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
- **Visit the [Deployed Site here.]( https://git.heroku.com/sarahthoorensdevblog.git)**
+ **Visit the [Deployed Site here.](https://sarahthoorensdevblog.herokuapp.com/)**
 
   **Deployment Date:**  11/15/22 <br>
  
