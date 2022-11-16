@@ -58,7 +58,7 @@ router.get('/login', (req, res) => {
         console.log(entryData)
        const entry = entryData.get({ plain: true });
         console.log(entry);
-        res.render('Entry', {
+        res.render('entry', {
           entry,
           loggedIn: req.session.loggedIn
   
