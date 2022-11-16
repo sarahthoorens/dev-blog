@@ -23,6 +23,7 @@ router.post('/', withAuth, async (req, res) => {
    entry_id: req.body.entry_id,
    user_id: req.session.user_id,
   })
+  console.log(commentData);
   // if the comment is successfully created, the new response will be returned as json
   res.status(200).json(commentData)
 } catch (err) {
