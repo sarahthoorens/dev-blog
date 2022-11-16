@@ -1,26 +1,31 @@
-<card>
-    <div class="mb-5 pt-3">
-    <h2 class="title">Welcome to your dashboard!</h2>
-{{#if entries.length}}
+<div class="card">
+    <div class="card-header mb-5 pt-3">
+        <h2 class="title">Welcome to your dashboard !</h2>
+        {{#if entries.length}}
     </div>
-    {{#each entries as |entry|}}
+    <div class="card-body">
+        {{#each entries as |entry|}}
         {{> entryInfo entry}}
-        
-           <p><a href="/dashboard/entry/{{entry.id}}"><button class="button">Edit Entry</button></a></p>
-        </div>
+
+        <p><a href="/dashboard/entry/{{entry.id}}"><button class="button">Edit Entry</button></a></p>
+    </div>
     {{/each}}
- <a href="/dashboard/add/"><button id="add-post" class="button">Add New Blog Entry</button></a>
-{{else}}
-<h4 class="">No Posts Yet!</h4>
-<a href="/dashboard/add/"><button id="add-post" class="button">Add New Blog Entry</button></a>
-<a href="/"><button id="add-post" class="button">View All</button></a>
+    <a href="/dashboard/add/"><button id="add-post" class="button">Add New Blog Entry</button></a>
+    {{else}}
+    <div class="card-header">
+    <h4 class="">No Posts Yet!</h4>
+     <p></p
+    <h5>Start blogging by clicking below.</h5>
+    </div>
+    <a href="/dashboard/add/"><button id="add-post" class="button btn btn-success">Add New Blog Entry</button></a>
+    <p></p>
+    <a href="/"><button id="add-post" class="button btn btn-secondary">View All</button></a>
 
-{{/if}}
-<card>
-
-</card>
-<form class="logout-form">
-    <a href="/user/logout"><button class="button" type="submit">Logout</button></a>
-</form>
-</card>
+    {{/if}}
+    <p></p>
+    <form class="logout-form">
+        <a href="/user/logout"><button class="button btn btn-secondary" type="submit">Logout</button></a>
+    </form>
+ 
+</div>
 <script src="js/logout.js"></script>

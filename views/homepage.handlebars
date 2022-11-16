@@ -4,18 +4,24 @@
 </div>
 
 {{else}}
-<h6 class="pb-3">No Entries to Show</h6>
+<div class="card">
+   <div class="card-header">
+      <h6 class="pb-3">No Entries to Show</h6>
+   </div>
+</div>
 {{/each}}
 <div class="card mb-6">
    <div class="column">
-      <a href="/dashboard/add/"><button class="button" type="submit">Add New Blog Entry</button></a></p>
-    </div>
-    </card>
+      <a href="/dashboard/add/"><button class="button btn btn-secondary" type="submit">Add New Blog Entry</button></a>
+      </p>
+   </div>
+   </card>
    {{#if loggedIn}}
-<form class="logout-form">
-    <a href="/user/logout"><button class="button" type="submit">Logout</button></a>
-</form>
-</card>
-<script src="js/logout.js"></script>
-{{/if}}
+    <p></p
+   <form class="logout-form">
+      <a href="/user/logout"><button class="button btn btn-secondary" type="submit">Logout</button></a>
+   </form>
+   </card>
+   <script src="js/logout.js"></script>
+   {{/if}}
 </div>

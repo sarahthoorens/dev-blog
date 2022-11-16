@@ -1,14 +1,15 @@
 <div class="card mb-6">
-  <header class="card-header card-header-title">
-        <div class="column">
+  <header>
+        <div class="card-header card-header-title">
       <a href="/entry/{{entry.id}}" class="">{{entry.title}}</a></p>
       </div>
   </header>
-    <div class="card-content">
-        <div class="content">
+    <div class="card">
+        <div class="card-body content">
             {{entry.entry_content}}
         </div>
            <div class="card-footer">
+             <p></p>
             <h6>Comments:</h6>
             <ul class="list-group">
 
@@ -26,6 +27,8 @@
 </div>
 </section>
 {{#if loggedIn}}
+ <p></p>
+  <p></p>
 Leave a comment: 
 
 <form class="comment-form">
@@ -33,9 +36,9 @@ Leave a comment:
     <textarea class="ml-5" rows="3" name="comment-content"></textarea>
   </div>
   <div>
-    <button class="button" type="submit">Post Comment</button>
+    <button class="button btn btn-success" type="submit">Post Comment</button>
   </div>
-  <button class="button" type="submit">Logout</button>
+  <button class="button btn btn-warning" type="submit">Logout</button>
 </form>
 {{/if}}
 

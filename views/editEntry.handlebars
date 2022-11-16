@@ -1,23 +1,27 @@
 <article>
   <a href="/dashboard" class=""> &larr; Return to Dashboard</a>
-  <h2 class="title">Edit Entry</h2><hr>
+  <header>
+    <div class="card-header card-header-title">
+      <h2 class="title">Edit Entry</h2>
+    </div>
+  </header>
   <form class="edit-entry-form">
     <div>
-        <label for="entry-title">Title:</label>
+      <label for="entry-title">Title:</label>
       <input class="input" name="entry-title" type="text" value="{{entry.title}}" />
     </div>
     <div>
-        <label for="entry-content">Entry Content:</label>
+      <label for="entry-content">Entry Content:</label>
       <textarea class="form-control" name="entry-content" type="text" rows="10" />{{entry.entry_content}}</textarea>
     </div>
-   <div class="entry-footer">
-   <b>{{entry.username}}</b>{{created_at}} 
+    <div class="entry-footer">
+      <b>{{entry.username}}</b>{{created_at}}
       {{#if user.comments}}
       <a href="dashboard/entry/{{id}}">{{this.comments}}</a>
       {{/if}}
     </div>
-    <button type="submit" class="button">Update Entry</button>
-    <button type="submit" class="button warning delete-entry-btn">Delete Entry</button>
+    <button type="submit" class="button btn btn-success">Update Entry</button>
+    <button type="submit" class="button btn btn-danger delete-entry-btn">Delete Entry</button>
   </form>
 </article>
 
