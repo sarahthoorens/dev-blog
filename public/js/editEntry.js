@@ -1,15 +1,15 @@
 async function editButtonHandler(event) {
    event.preventDefault();
- 
-   const title = document.querySelector('input[name="entry-title"]');
-   const content = document.querySelector('textarea[name="entry-content"]');
+   const title = document.querySelector('input[name="entry-title"]').value;
+   const content = document.querySelector('textarea[name="entry-content"]').value;
+   console.log(content)
    const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
 
    const response = await fetch(`/api/entry/${id}`, {
        method: 'PUT',
        body: JSON.stringify({
-           title: title.value,
-           entry_content: content.value,
+        title: title,
+        content: content,
        }),
        headers: {
            'Content-Type': 'application/json'

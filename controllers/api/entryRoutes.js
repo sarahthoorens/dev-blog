@@ -7,7 +7,7 @@ router.post('/', withAuth,  async (req, res) => {
   try { 
     const entryData = await Entry.create({
     title: req.body.title,
-    entry_content: req.body.entry_content,
+    entry_content: req.body.content,
     user_id: req.session.user_id,
   });
   // if the entry is successfully created, the new response will be returned as json
