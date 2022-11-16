@@ -20,7 +20,7 @@
   <br>
   
   ## Description
-Using Handlebars for Views, Sequelize for MySql2 Models and Express.js for Controllers, I created a blog site where users can sign up and log in, view, add, edit and delete posts, and can comment on other user posts.
+Using Handlebars for Views, Sequelize for MySql2 Models and Express.js for Controllers, I created a blog site where users can sign up and log in, view, add, edit and delete posts, and can navigate to other posts to post comments. Although fully functioning, the blog is extremely simplistic in design. 
 
 The application’s folder structure follows the Model-View-Controller paradigm. It uses
 
@@ -71,13 +71,33 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 ```
 
 ## Usage 
-
+Users are greeted with a landing page of all blog posts,which indicate name and date of post. Users can sign up, then log in to gain access to detailed posts where they may add comments and create blog entries of their own. 
 
 ## Deployed Screenshots
-  ![](assets/images/screenshot.png)
-  ## Challenges
- 
+![landing-homepage-view](/assets/homepage.png)
+_<p align="center">landing page view </p>_
+_<p align="center">(user may click on linked title to view entry and add comments if logged in or will be prompted to log in upon click.)</p>_
+</br>
 
+![view-entry-and-comments](/assets/view%20one%20entry.png)
+_<p align="center">entry detailed view with comments</p>_
+</br>
+
+![dashboard-view-all](/assets/dashboard-all.png)
+_<p align="center">all user posts in dashboard</p>_
+<br>
+
+![edit-from-dashboard](/assets/dashboard-edit.png)
+_<p align="center">edit post view</p>_
+<br>
+
+  ![add-blog-entry-view](/assets/add-entry.png)
+  _<p align="center">add new blog post view</p>_
+
+  ## Challenges
+ This was one of the most challenging projects for me as a new developer. Handling so many routes, views and models at once proved to be a rather steep learning curve. I originally approached the project with the idea of creating each componenent of the MVC paradigm separately and linking later. This was not a winning approach. I quickly realized that the better approach was to complete an entire view from front to back end and then iterate until all views were complete. 
+
+ I'm quite satisfied with the end product, which is something I never would have dreamed of creating when I was an avid blogger earlier in life. I would like to return to this app to make it more intuitive for the user and give it a sharper look. 
 
   ## Tests
 
