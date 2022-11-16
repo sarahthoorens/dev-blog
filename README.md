@@ -75,20 +75,15 @@ Users are greeted with a landing page of all blog posts,which indicate name and 
 
 ## Deployed Screenshots
 ![landing-homepage-view](/assets/homepage.png)
-_<p align="center">landing page view </p>_
-_<p align="center">(user may click on linked title to view entry and add comments if logged in or will be prompted to log in upon click.)</p>_
+_<p align="center">landing page view (user may click on linked title to view entry and add comments if logged in or will be prompted to log in upon click.)</p>_
 </br>
 
 ![view-entry-and-comments](/assets/view%20one%20entry.png)
 _<p align="center">entry detailed view with comments</p>_
 </br>
 
-![dashboard-view-all](/assets/dashboard-all.png)
+![view-from-dashboard](/assets/dashboard-edit.png)
 _<p align="center">all user posts in dashboard</p>_
-<br>
-
-![edit-from-dashboard](/assets/dashboard-edit.png)
-_<p align="center">edit post view</p>_
 <br>
 
   ![add-blog-entry-view](/assets/add-entry.png)
